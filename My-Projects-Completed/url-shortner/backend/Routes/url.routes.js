@@ -6,15 +6,14 @@ const ShortUniqueId = require("short-unique-id");
 const date = require("date-and-time");
 
 const urlRouter = express.Router();
-const uid = new ShortUniqueId({ length: 8 });
-const now = new Date();
 
 // Middleware
 urlRouter.use(express.json());
 urlRouter.use(useragent.express());
-// urlRouter.use(auth);
+// urlRouter.use(auth); -- >this is a middleware for every routes but I have used 
+// middlewares separately for each routes.
 
-urlRouter.get("/",  async (req, res) => {
+urlRouter.get("/", auth,  async (req, res) => {
   const data = await UrlModel.find();
 
   res.status(200).json({
@@ -41,7 +40,7 @@ urlRouter.get("/:shortID", async (req, res) => {
   }
 });
 
-urlRouter.post("/create", auth, async (req, res) => {
+urlRouter.post("/create", auth,  async (req, res) => {
   const { OriginalUrl: urlFromReqBody } = req.body;
   if (urlFromReqBody) {
     try {
@@ -68,7 +67,7 @@ urlRouter.post("/create", auth, async (req, res) => {
   }
 });
 
-urlRouter.patch("/update", auth, (req, res) => {});
+urlRouter.patch("/update", auth,  (req, res) => {});
 
 urlRouter.delete("/delete/:shortID", auth, (req, res) => {});
 

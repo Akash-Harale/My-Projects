@@ -12,7 +12,7 @@ const urlSchema = mongoose.Schema(
         device: { type: String },
       },
     ],
-    shortID: { type: String, required: true, unique: true },
+    shortID: { type: String, required: false, unique: true },
   },
   {
     versionKey: false,

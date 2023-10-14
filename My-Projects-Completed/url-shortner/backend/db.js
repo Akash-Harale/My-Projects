@@ -1,7 +1,9 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const connection=mongoose.connect("mongodb://127.0.0.1:27017/url_shortener");
+const connection = mongoose.connect(
+  "mongodb+srv://akash:harale@cluster0.f8maxby.mongodb.net/url_shortener"
+);
 
-module.exports ={
-    connection
-}
+module.exports = {
+  connection,
+};
